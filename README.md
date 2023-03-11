@@ -1,45 +1,24 @@
 
-# Three-Dxf
+# Three-Dxf-TS
 
-**Three-Dxf** is a javascript viewer for dxf files. It takes dxf objects produced from Dxf-Parser and renders them using
- three.js.
+**Three-Dxf-TS** takes dxf objects produced from Dxf-Parser and convertes them to three.js objects.
 
-#### Install
-```
-npm install three-dxf
-```
 
-For now we recommend cloning the repo, and starting with our sample. See **Run Samples** below.
+#### Requirements
+Successfully tested with the following libraries:
+  - "@dxfom/mtext": "^0.3.2"
+  - "dxf-parser": "^1.1.2"
+  - "three": "^0.148.0"
+  - "troika-three-text": "^0.47.1"
 
-![Example of the viewer](https://github.com/gdsestimating/three-dxf/blob/screenshots/screenshots/three-dxf-screenshot.png?raw=true "What the sample looks like")
+To work with troika-three-text, which does not have type support, place devs.d.ts in the same folder as index.ts.
 
 #### Usage
 ```javascript
-// See index.js in the sample for more details
-var parser = new window.DxfParser();
-var dxf = parser.parseSync(fileReader.result);
-cadCanvas = new ThreeDxf.Viewer(dxf, document.getElementById('cad-view'), 400, 400);
+// See dxf_to_three.ts for more details
+const object3Ds = dxfToThreeObject3Ds(dxf, settings);
+disposeObject3Ds(object3Ds);
 ```
-
-#### Run Samples
-```
-# first, compile three-dxf
-> npm install
-> npm run build
-
-# then install the sample's dependencies
-> cd sample
-> npm install
-
-# go back to the root and run http-server to run the sample
-> cd ..
-> npm install -g http-server@0.9.0
-> http-server .
-# use `http-server -c-1 .` to prevent caching
-```
-
-After performing the steps above, you can see the example at [http://127.0.0.1:8080/sample/index.html](http://127.0.0.1:8080/sample/index.html). You can use the dxf file included in the sample. **NOTE: the latest version of http-server will go into a redirect loop if you exlcude "/index.html" from the url.**
-
 
 #### Supported DXF Features
 Supports:
